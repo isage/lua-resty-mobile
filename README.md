@@ -27,7 +27,7 @@ This library is production ready.
 Requirements
 ======
 
-This library requires [lua-resty-cookie](https://github.com/cloudflare/lua-resty-cookie) and cjson
+This library requires [lua-resty-cookie](https://github.com/cloudflare/lua-resty-cookie) and cjson  
 Also, this library uses definitions json file from (http://mobiledetect.net/)
 
 Synopsis
@@ -71,12 +71,12 @@ detect
 ---
 `syntax: require("resty.mobile").detect(istabletmobile, cookiename)`
 
-Detects mobile device.
-Returns string 'true' or 'false'.
-Returns 0 (and logs error) on any error.
-If first parameter is true - tablet devices are treated as mobile devices, otherwise as desktop.
-If second parameter is ommited, library will parse headers every time.
-If second parameter is a string - cookie with this name will be checked, and, if exists, check will be skipped.
+Detects mobile device.  
+Returns string 'true' or 'false'.  
+Returns 0 (and logs error) on any error.  
+If first parameter is true - tablet devices are treated as mobile devices, otherwise as desktop.  
+If second parameter is ommited, library will parse headers every time.  
+If second parameter is a string - cookie with this name will be checked, and, if exists, check will be skipped.  
 
 This method also requires (and sets) nginx variable $mobile_detected,
 which will be set to string 'true' if device was detected by regexps, and to 'false' otherwise.
