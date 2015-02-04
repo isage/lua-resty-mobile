@@ -42,12 +42,17 @@ Synopsis
 
     server {
         location /test {
-            set $mobile_detected 0;
+            set $mobile_detected 'false';
             set $mobile_device 'false';
 
             set_by_lua $mobile_device '
               return require("resty.mobile").detect(false,"mobile")
             ';
+
+            if ($mobile_detected = 'true')
+            {
+              # set cookie or smth
+            }
         }
     }
 ```
