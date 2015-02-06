@@ -74,8 +74,8 @@ function _M.init(file)
 end
 
 
-function _M.detect(isatabletmobile, cookie)
-  if cookie then
+function _M.detect(isatabletmobile, cookie_name)
+  if cookie_name then
     local cookie, err = ck:new()
     if not cookie then
       log(ngx.ERR, err)
@@ -83,7 +83,7 @@ function _M.detect(isatabletmobile, cookie)
     end
 
     -- get mobile cookie
-    local field, err = cookie:get(cookie)
+    local field, err = cookie:get(cookie_name)
     if field then
       ngx.var.mobile_detected = "false"
       return field
