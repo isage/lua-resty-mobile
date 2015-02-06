@@ -52,7 +52,10 @@ Synopsis
             if ($mobile_detected = 'true')
             {
               # set cookie or smth
+              add_header Set-Cookie "mobile=$mobile_device;path=/";
             }
+            # tell backend about device
+            proxy_set_header X-Mobile $mobile_device;
         }
     }
 ```
