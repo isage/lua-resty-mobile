@@ -79,29 +79,29 @@ function _M.detect(isatabletmobile, cookie_name)
     local cookie, err = ck:new()
     if not cookie then
       log(ngx.ERR, err)
-      return 0
+      return 'false'
     end
 
     -- get mobile cookie
     local field, err = cookie:get(cookie_name)
     if field then
-      ngx.var.mobile_detected = "false"
-      return field
+      ngx.var.mobile_device = field
+      return 'false'
     end
   end
 
-  local mobile_device = 'false'
+  local mobile_device = 'computer'
 
   -- check headers
   for key, value in pairs(explode("|",shared.mobile:get("headers"))) do
     if ngx.var[value] then
       local m, err = ngx.re.match( ngx.var[value], shared.mobile:get("header:"..value))
       if m then
-        mobile_device = 'true'
+        mobile_device = 'phone'
       else
         if err then
           log(ngx.ERR, "error: ", err)
-          return 0
+          return 'false'
         end
       end
     end
@@ -118,31 +118,27 @@ function _M.detect(isatabletmobile, cookie_name)
   -- check against phones
   local m, err = ngx.re.match( _uastr, shared.mobile:get("phones"))
   if m then
-    mobile_device = 'true'
+    mobile_device = 'phone'
   else
     if err then
       log(ngx.ERR, "error: ", err)
-      return 0
+      return 'false'
     end
   end
 
   -- check against tablets
   local m, err = ngx.re.match( _uastr, shared.mobile:get("tablets"))
   if m then
-    if istabletmobile then
-      mobile_device = 'true'
-    else
-      mobile_device = 'false'
-    end
+      mobile_device = 'tablet'
   else
     if err then
       log(ngx.ERR, "error: ", err)
-      return 0
+      return 'false'
     end
   end
 
-  ngx.var.mobile_detected = "true"
-  return mobile_device
+  ngx.var.mobile_device = mobile_device
+  return 'true'
 end
 
 return _M
