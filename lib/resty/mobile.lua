@@ -56,6 +56,22 @@ function _M.init(file)
     local _tablets="("..table.concat(_ttable, "|")..")"
     shared.mobile:set("tablets",_tablets)
 
+    -- browsers
+    local _btable = {}
+    for key,value in pairs(_decoded.uaMatch.browsers) do
+      table.insert(_btable, value)
+    end
+    local _browsers="("..table.concat(_btable, "|")..")"
+    shared.mobile:set("browsers",_browsers)
+
+    -- os
+    local _ostable = {}
+    for key,value in pairs(_decoded.uaMatch.os) do
+      table.insert(_ostable, value)
+    end
+    local _os="("..table.concat(_ostable, "|")..")"
+    shared.mobile:set("os",_os)
+
     -- ua headers
     shared.mobile:set("uaheaders",string.lower(table.concat(_decoded.uaHttpHeaders,"|")))
 
@@ -117,6 +133,28 @@ function _M.detect(isatabletmobile, cookie_name)
 
   -- check against phones
   local m, err = ngx.re.match( _uastr, shared.mobile:get("phones"))
+  if m then
+    mobile_device = 'phone'
+  else
+    if err then
+      log(ngx.ERR, "error: ", err)
+      return 'false'
+    end
+  end
+
+  -- check against browsers
+  local m, err = ngx.re.match( _uastr, shared.mobile:get("browsers"))
+  if m then
+    mobile_device = 'phone'
+  else
+    if err then
+      log(ngx.ERR, "error: ", err)
+      return 'false'
+    end
+  end
+
+  -- check against os
+  local m, err = ngx.re.match( _uastr, shared.mobile:get("os"))
   if m then
     mobile_device = 'phone'
   else
