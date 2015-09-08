@@ -90,7 +90,7 @@ function _M.init(file)
 end
 
 
-function _M.detect(isatabletmobile, cookie_name)
+function _M.detect(cookie_name)
   if cookie_name then
     local cookie, err = ck:new()
     if not cookie then
