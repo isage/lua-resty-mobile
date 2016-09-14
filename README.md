@@ -109,7 +109,7 @@ add the path of your `lua-resty-mobile` source tree to ngx_lua's Lua module sear
 Authors
 =======
 
-Epifanov Ivan <isage.dna@gmail.com>, Hearst Shkulev Media
+Epifanov Ivan <isage.dna@gmail.com>
 
 [Back to TOC](#table-of-contents)
 
@@ -118,7 +118,7 @@ Copyright and License
 
 This module is licensed under the BSD license.
 
-Copyright (C) 2015, by Epifanov Ivan <isage.dna@gmail.com>, Hearst Shkulev Media
+Copyright (C) 2015, by Epifanov Ivan <isage.dna@gmail.com>
 
 All rights reserved.
 
