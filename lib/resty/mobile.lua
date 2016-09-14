@@ -1,4 +1,4 @@
--- Copyright (C) 2015 Ivan Epifanov, Hearst Shkulev Media
+-- Copyright (C) 2015 Ivan Epifanov
 
 local log           = ngx.log
 local ERR           = ngx.ERR
