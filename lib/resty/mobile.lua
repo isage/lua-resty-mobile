@@ -102,7 +102,7 @@ function _M.detect(cookie_name)
     local field, err = cookie:get(cookie_name)
     if field then
       ngx.var.mobile_device = field
-      return 'false'
+      return 'true'
     end
   end
 
